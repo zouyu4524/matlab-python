@@ -45,7 +45,7 @@ Python函数的一大便利在于其键值对输入, 在MATLAB许多内建的函
 
 如果导入的模块依赖HDF5模块, 例如: `tensorflow`, `keras`, 那么很有可能出现HDF5冲突问题, 从而导致MATLAB崩溃。具体的原因在于, MATLAB内建有对HDF5的支持, 但其版本可能与所引入Python模块的HDF5版本不一致, 而当遇到版本不匹配的情况时, MATLAB会abort, 导致崩溃。
 
-**解决方案**: 参考[3]中的方案, 可以试着安装与MATLAB内建HDF5一致的版本（可以通过`[majnum,minnum,relnum] = H5.get_libversion()`获取MATLAB的HDF5版本）, 但是可能造成Python模块的依赖问题, 总之并非一个完美的方案。而如果是Linux系统下的MATLAB, 则有一个完美的解决方案, 思路是`LD_PRELOAD`链接到与Python模块匹配的HDF5库, 从而绕开该问题。
+**解决方案**: 参考[4]中的方案, 可以试着安装与MATLAB内建HDF5一致的版本（可以通过`[majnum,minnum,relnum] = H5.get_libversion()`获取MATLAB的HDF5版本）, 但是可能造成Python模块的依赖问题, 总之并非一个完美的方案。而如果是Linux系统下的MATLAB, 则有一个完美的解决方案, 思路是`LD_PRELOAD`链接到与Python模块匹配的HDF5库, 从而绕开该问题。
 
 ```
 >> RTLD_NOW = 2;
